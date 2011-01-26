@@ -6,8 +6,10 @@
  *
  * To Do
  * ~~~~~
- * - Implement all Parrot commands.
+ * - Refactor duplicate "forward" and "backward" command code.
+ * - Provide feedback to client.
  * - Change "rate" command.
+ * - Implement all Parrot commands.
  * - Transparently pass AT commands.
  * - Adjust logging level (filtering), especially navigation output.
  */
@@ -122,29 +124,35 @@ public class Server {
       }
       else if (command.equalsIgnoreCase("forward")) {
         System.out.println("Command: forward: " + repeat);
+        parrotCommunication.emergencyAbort = false;
 
         for (int index = 0;  index < repeat;  index ++) {
+          if (parrotCommunication.emergencyAbort == true) break;
+
           parrotCommunication.transmitProgressiveCommand(
             ParrotCommunication.MODE_PROGRESSIVE, 0f, -0.30f, 0f, 0f
           );
-
-          parrotCommunication.transmitProgressiveCommand(
-            ParrotCommunication.MODE_HOVER, 0f, 0f, 0f, 0f
-          );
         }
+
+        parrotCommunication.transmitProgressiveCommand(
+          ParrotCommunication.MODE_HOVER, 0f, 0f, 0f, 0f
+        );
       }
       else if (command.equalsIgnoreCase("backward")) {
         System.out.println("Command: backward");
+        parrotCommunication.emergencyAbort = false;
 
         for (int index = 0;  index < repeat;  index ++) {
+          if (parrotCommunication.emergencyAbort == true) break;
+
           parrotCommunication.transmitProgressiveCommand(
             ParrotCommunication.MODE_PROGRESSIVE, 0f, 0.30f, 0f, 0f
           );
-
-          parrotCommunication.transmitProgressiveCommand(
-            ParrotCommunication.MODE_HOVER, 0f, 0f, 0f, 0f
-          );
         }
+
+        parrotCommunication.transmitProgressiveCommand(
+          ParrotCommunication.MODE_HOVER, 0f, 0f, 0f, 0f
+        );
       }
       else {
         System.out.println("Unknown server command: " + command);

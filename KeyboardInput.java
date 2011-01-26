@@ -52,6 +52,8 @@ public class KeyboardInput implements KeyListener {
 
       case KeyEvent.VK_SPACE:
       case KeyEvent.VK_H:
+        parrotCommunication.emergencyAbort = true;
+
         parrotCommunication.transmitProgressiveCommand(
           ParrotCommunication.MODE_HOVER, 0f, 0f, 0f, 0f
         );

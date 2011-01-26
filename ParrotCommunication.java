@@ -60,6 +60,8 @@ public class ParrotCommunication {
 
   private DatagramSocket socketCommand = null;
 
+  public boolean emergencyAbort = false;   // Used by external looping commands
+
   public ParrotCommunication(
     InetAddress parrotAddress) {
 
