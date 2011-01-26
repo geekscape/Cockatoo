@@ -16,11 +16,6 @@
  *
  * - Logging slowing down responsiveness, use separate thread ?
  *
- * - Implement proxy-server.
- *   - Transparently pass AT commands.
- *   - Telnet keyboard commands ... design ?
- *   - Adjust logging level (filtering), especially navigation output.
- *
  * - Set-up Aiko-Gateway (Lua).
  *
  * - Create flight macros, can also be used by proxy-server.
@@ -35,11 +30,11 @@ import java.net.*;
 
 public class Cockatoo {
 
-  private static final int DEFAULT_SERVER_PORT = 5600;
-
   private Display display = null;
 
   private ParrotCommunication parrotCommunication = null;
+
+  private Server server = null;
 
   public Cockatoo(
     InetAddress parrotAddress) {
@@ -48,7 +43,7 @@ public class Cockatoo {
 
     display = new Display(new KeyboardInput(parrotCommunication));
 
-// TODO: Create proxy-server socket listener
+    server = new Server(parrotCommunication);
   }
 
   public static void main(

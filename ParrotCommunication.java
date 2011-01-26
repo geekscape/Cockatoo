@@ -136,7 +136,7 @@ public class ParrotCommunication {
     lastTransmitBuffer = buffer;
   }
 
-  private void transmit(
+  private synchronized void transmit(
     StringBuffer buffer) {
 
 //  System.out.println("transmit(): " + buffer);
