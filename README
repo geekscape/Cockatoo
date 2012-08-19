@@ -1,0 +1,32 @@
+This is the Cockatoo AR.Drone program by Andy Gelme.
+
+ * License: GPLv3. http://geekscape.org/static/parrot_license.html
+
+README by Chris Samuel based on what I can gather from the source. :-)
+
+The Cockatoo proxy connects to an AR.Drone 1 (currently) on the default
+IP address of 192.168.1.1 and sends it UDP commands to control it.
+
+When the proxy starts it sets up a TCP port listening for connections on
+5600 and accepts commands in plain text.
+
+Currently those commands are:
+
+takeoff
+land
+forward <repeat>
+backward (possibly with a <repeat> argument)
+
+
+To compile:
+
+$ make
+
+
+To run:
+$ java Cockatoo
+
+
+To clean:
+
+$ make clean
