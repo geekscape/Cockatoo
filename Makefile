@@ -2,10 +2,13 @@
 # (c) Chris Samuel 2012
 # License: GPLv3. http://geekscape.org/static/parrot_license.html
 
-all:	Cockatoo
+all:	compile
 
-Cockatoo: Cockatoo.java  Display.java  KeyboardInput.java  ParrotCommunication.java  Server.java
+compile: Cockatoo.java  Display.java  KeyboardInput.java  ParrotCommunication.java  Server.java
 	javac Cockatoo.java
+
+run: compile
+	java Cockatoo
 
 clean:
 	@rm -fv *.class
